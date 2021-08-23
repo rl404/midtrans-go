@@ -95,7 +95,7 @@ func requestCreditCard() {
 			Authentication: true,
 		},
 		Items: &[]midtrans.ItemDetails{
-			midtrans.ItemDetails{
+			{
 				ID:    "ITEM1",
 				Price: 200000,
 				Qty:   1,
