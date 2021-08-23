@@ -24,7 +24,7 @@ func initiateMidtransTokenization() {
 
 func paymentAccount(phoneNumber string) *PaymentAccountReq {
 	return &PaymentAccountReq{
-		PaymentType:  PaymentTypeGopay,
+		PaymentType: PaymentTypeGopay,
 		GopayPartner: &GopayPartnerDetails{
 			PhoneNumber: phoneNumber,
 			CountryCode: "62",
@@ -105,5 +105,3 @@ func TestUnlinkPaymentAccount(t *testing.T) {
 		assert.Equal(t, 412, err.StatusCode)
 	}
 }
-
-

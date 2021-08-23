@@ -13,10 +13,8 @@ const SandboxServerKey2 = "SB-Mid-server-TOq1a2AVuiyhhOjvfs3U_KeO"
 
 const SandboxClientKey2 = "SB-Mid-client-nKsqvar5cn60u2Lv"
 
-
 const IrisCreatorKeySandbox = "IRIS-330198f0-e49d-493f-baae-585cfded355d"
 const IrisApproverKeySandbox = "IRIS-1595c12b-6814-4e5a-bbbb-9bc18193f47b"
-
 
 func SnapParamWithMap() *snap.RequestParamWithMap {
 	req := &snap.RequestParamWithMap{
@@ -30,7 +28,7 @@ func SnapParamWithMap() *snap.RequestParamWithMap {
 }
 
 func SnapParam() *snap.Request {
-	req := & snap.Request{
+	req := &snap.Request{
 		TransactionDetails: midtrans.TransactionDetails{
 			OrderID:  "MID-GO-TEST-" + Random(),
 			GrossAmt: 100000,
