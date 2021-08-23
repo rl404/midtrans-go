@@ -4,9 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/midtrans/midtrans-go"
 	"net/http"
 	"strconv"
+
+	"github.com/midtrans/midtrans-go"
 )
 
 // Client : CoreAPI Client struct
@@ -93,11 +94,15 @@ func ChargeTransaction(req *ChargeReq) (*ChargeResponse, *midtrans.Error) {
 // more detail refer to: https://api-docs.midtrans.com/#get-token
 func (c Client) CardToken(cardNumber string, expMonth int, expYear int, cvv string, clientKey string) (*CardTokenResponse, *midtrans.Error) {
 	resp := &CardTokenResponse{}
+	month, year := strconv.Itoa(expMonth), strconv.Itoa(expYear)
+	if len(month) == 1 {
+		month = "0" + month
+	}
 	URL := c.Env.BaseUrl() +
 		"/v2/token?client_key=" + clientKey +
 		"&card_number=" + cardNumber +
-		"&card_exp_month=" + strconv.Itoa(expMonth) +
-		"&card_exp_year=" + strconv.Itoa(expYear) +
+		"&card_exp_month=" + month +
+		"&card_exp_year=" + year +
 		"&card_cvv=" + cvv
 	err := c.HttpClient.Call(http.MethodGet, URL, nil, c.Options, nil, resp)
 
@@ -118,10 +123,14 @@ func CardToken(cardNumber string, expMonth int, expYear int, cvv string) (*CardT
 // more detail refer to: https://api-docs.midtrans.com/#register-card
 func (c Client) RegisterCard(cardNumber string, expMonth int, expYear int, clientKey string) (*CardRegisterResponse, *midtrans.Error) {
 	resp := &CardRegisterResponse{}
+	month, year := strconv.Itoa(expMonth), strconv.Itoa(expYear)
+	if len(month) == 1 {
+		month = "0" + month
+	}
 	URL := c.Env.BaseUrl() +
 		"/v2/card/register?card_number=" + cardNumber +
-		"&card_exp_month=" + strconv.Itoa(expMonth) +
-		"&card_exp_year=" + strconv.Itoa(expYear) +
+		"&card_exp_month=" + month +
+		"&card_exp_year=" + year +
 		"&client_key=" + clientKey
 
 	err := c.HttpClient.Call(http.MethodGet, URL, nil, c.Options, nil, resp)
